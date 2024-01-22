@@ -1,5 +1,6 @@
 import React from "react";
 import "./friendList.css";
+import AddFriendForm from "./addFriendForm";
 
 const friendsInit = [
   {
@@ -22,7 +23,11 @@ const friendsInit = [
   },
 ];
 
-function FriendList() {
+function FriendList({ onAdd }) {
+  function addHandle() {
+    onAdd(true);
+  }
+
   return (
     <div className="friend-list-wrapper">
       {friendsInit.map((friend) => (
@@ -34,7 +39,7 @@ function FriendList() {
         />
       ))}
       <div className="float-right">
-        <button className="add-btn">Add a friend</button>
+        <button className="add-btn" onClick={addHandle}>Add a friend</button>
       </div>
     </div>
   );

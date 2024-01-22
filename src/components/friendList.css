@@ -1,21 +1,68 @@
+.friend-list-wrapper {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid darkslategray;
+  border-radius: 5px;
+  padding: 15px 0;
+}
+
 .friend-wrapper {
-    display: inherit;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: first baseline;
-    /* margin: 20px; */
-    padding: 5px;
+  display: inherit;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: first baseline;
+  /* margin: 20px; */
+  padding: 0 25px;
+}
+.friend-wrapper:hover {
+    background-color: #ebeee2;
 }
 
 .info-wrapper {
-    flex-direction: column;
-    margin: 15px;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-width: 63%;
+  margin: 15px;
 }
 
 .select-btn {
-    cursor: pointer;
-    border: none;
-    border-radius: 5px;
-    padding: 5px 10px;
-    background-color: blanchedalmond;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  background-color: #00768f;
+  color: whitesmoke;
+}
+.select-btn:hover {
+    background-color: #005b6d;
+}
+
+.float-right {
+  display: inherit;
+  justify-content: right;
+}
+
+.add-btn {
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background-color: #6b8e23;
+  color: cornsilk;
+  max-width: 100px;
+  padding: 5px 10px;
+  margin-right: 20px;
+  margin-top: 10px;
+}
+.add-btn:hover {
+    background-color: #516c1a;
+}
+
+.balance-red {
+    color: #b33b32;
+}
+.balance-green {
+    color: #6b8e23;
+}
+.balance-even {
+    color: rgb(84, 84, 84);
 }

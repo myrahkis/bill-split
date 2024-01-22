@@ -1,3 +1,8 @@
+/* background: #f6edd9
+dark: #152a00
+main: #6b8e23
+emphasis: #009aac */
+
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500&display=swap');
 
 * {
@@ -8,6 +13,7 @@
 
 body {
   font-family: 'Rubik', sans-serif;
+  background-color: #e8e2d3;
   padding: 3.2rem;
 }
 

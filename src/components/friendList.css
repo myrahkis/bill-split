@@ -1,0 +1,21 @@
+.friend-wrapper {
+    display: inherit;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: first baseline;
+    /* margin: 20px; */
+    padding: 5px;
+}
+
+.info-wrapper {
+    flex-direction: column;
+    margin: 15px;
+}
+
+.select-btn {
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    background-color: blanchedalmond;
+}

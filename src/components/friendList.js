@@ -43,7 +43,7 @@ function FriendList() {
 function Friend({ img, name, balance }) {
   return (
     <div className="friend-wrapper">
-      <img src={img} alt="pfp" />
+      <img src={img} alt="pfp" className="pfp"/>
       <div className="info-wrapper">
         <h4>{name}</h4>
         <p

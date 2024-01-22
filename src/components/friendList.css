@@ -18,10 +18,15 @@
     background-color: #ebeee2;
 }
 
+.pfp {
+    width: 50px;
+    height: 50px;
+}
+
 .info-wrapper {
   flex-direction: column;
   justify-content: flex-start;
-  min-width: 63%;
+  min-width: 55%;
   margin: 15px;
 }
 

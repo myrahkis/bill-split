@@ -11,18 +11,18 @@
   display: inherit;
   flex-direction: row;
   justify-content: space-between;
-  align-items: first baseline;
+  align-items:center;
   /* margin: 20px; */
   padding: 0 25px;
 }
 .friend-wrapper:hover {
-    background-color: #ebeee2;
+  background-color: #ebeee2;
 }
 
 .pfp {
-    width: 50px;
-    height: 50px;
-    margin-top: 15px;
+  width: 60px;
+  height: 60px;
+  /* margin-top: 15px; */
 }
 
 .info-wrapper {
@@ -41,7 +41,7 @@
   color: whitesmoke;
 }
 .select-btn:hover {
-    background-color: #005b6d;
+  background-color: #005b6d;
 }
 
 .float-right {
@@ -61,15 +61,15 @@
   margin-top: 10px;
 }
 .add-btn:hover {
-    background-color: #516c1a;
+  background-color: #516c1a;
 }
 
 .balance-red {
-    color: #b33b32;
+  color: #b33b32;
 }
 .balance-green {
-    color: #6b8e23;
+  color: #6b8e23;
 }
 .balance-even {
-    color: rgb(84, 84, 84);
+  color: rgb(84, 84, 84);
 }

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./addFriendForm.css";
 import "./friendList.css";
 
-function AddFriendForm({ onClose }) {
+function AddFriendForm({ friendsList, onAdd, onClose, showForm }) {
   const [name, setName] = useState("");
   const [url, setURL] = useState("");
 
@@ -10,22 +10,44 @@ function AddFriendForm({ onClose }) {
     onClose(false);
   }
 
-  return (
-    <form onSubmit={(e) => e.preventDefault()} className="form-wrapper">
-        <div className="float-right">
+  function submitHandle(e) {
+    e.preventDefault();
 
-      <button onClick={closeHandle} className="close-btn">
-        Close
-      </button>
-        </div>
-      <Input value={name} onAdd={setName}>
+    if (!name || !url) {
+      return;
+    }
+
+    // https://cdn0.iconfinder.com/data/icons/shift-avatar/32/Jonathan-1024.png
+    const newFriend = {
+      id: Math.floor(100000 + Math.random() * 900000),
+      name: name,
+      img: url,
+      balance: 0,
+    };
+
+    onAdd(friendsList => [...friendsList, newFriend]);
+
+    setName('');
+    setURL('');
+    showForm(false);
+
+  }
+
+  return (
+    <form onSubmit={submitHandle} className="form-wrapper">
+      <div className="float-right">
+        <button onClick={closeHandle} className="close-btn">
+          Close
+        </button>
+      </div>
+      <Input value={name} setter={setName} placeholder="Henry">
         Friend name
       </Input>
-      <Input value={url} onAdd={setURL}>
+      <Input value={url} setter={setURL} placeholder="https://.../name.png">
         Image URL
       </Input>
       <div className="float-right">
-        <button type="submit" onClick={""} className="add-btn">
+        <button type="submit" className="add-btn">
           Add
         </button>
       </div>
@@ -33,22 +55,22 @@ function AddFriendForm({ onClose }) {
   );
 }
 
-function Input({ value, onAdd, children }) {
+function Input({ value, setter, placeholder, children }) {
   function addHandle(e) {
-    onAdd(e.target.value);
+    setter(e.target.value);
   }
 
   return (
     <div className="input-wrapper">
       <label>{children}</label>
       <input
-        type="text"
         value={value}
         onChange={addHandle}
+        placeholder={placeholder}
         className="input"
       ></input>
     </div>
   );
 }
 
-export default AddFriendForm;
+export { AddFriendForm, Input };

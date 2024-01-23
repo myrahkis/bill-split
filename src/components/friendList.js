@@ -1,54 +1,45 @@
 import React from "react";
 import "./friendList.css";
-import AddFriendForm from "./addFriendForm";
+import './addFriendForm.css';
+// import AddFriendForm from "./addFriendForm";
 
-const friendsInit = [
-  {
-    id: 123456,
-    name: "Judy",
-    img: "icons/judy.png",
-    balance: -10,
-  },
-  {
-    id: 376395,
-    name: "Grace",
-    img: "icons/grace.png",
-    balance: 0,
-  },
-  {
-    id: 874686,
-    name: "Lorenzo",
-    img: "icons/lorenzo.png",
-    balance: 40,
-  },
-];
-
-function FriendList({ onAdd }) {
+function FriendList({ friendsList, onAdd, selected, onSelect }) {
   function addHandle() {
     onAdd(true);
   }
 
   return (
     <div className="friend-list-wrapper">
-      {friendsInit.map((friend) => (
+      {friendsList.map((friend) => (
         <Friend
           key={friend.id}
           img={friend.img}
           name={friend.name}
           balance={friend.balance}
+          selected={selected}
+          onSelect={onSelect}
         />
       ))}
       <div className="float-right">
-        <button className="add-btn" onClick={addHandle}>Add a friend</button>
+        <button className="add-btn" onClick={addHandle}>
+          Add a friend
+        </button>
       </div>
     </div>
   );
 }
 
-function Friend({ img, name, balance }) {
+function Friend({ img, name, balance, selected, onSelect }) {
+  function selectHandle() {
+    onSelect(!selected);
+  }
   return (
     <div className="friend-wrapper">
-      <img src={img} alt="pfp" className="pfp"/>
+      <img
+        src={img}
+        alt="pfp"
+        className="pfp"
+      />
       <div className="info-wrapper">
         <h4>{name}</h4>
         <p
@@ -67,7 +58,11 @@ function Friend({ img, name, balance }) {
             : `You and ${name} are even`}
         </p>
       </div>
-      <button className="select-btn">Select</button>
+      {
+        selected ?
+        <button className="close-btn" onClick={selectHandle}>Close</button> :
+        <button className="select-btn" onClick={selectHandle}>Select</button>
+      }
     </div>
   );
 }

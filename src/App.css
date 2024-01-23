@@ -5,3 +5,7 @@
   /* text-align: center; */
 }
 
+.bill-split-layout {
+  display: inherit;
+  flex-direction: row;
+}

@@ -6,18 +6,22 @@ import './addFriendForm.css';
 function FriendList({ friendsList, onAdd, selected, onSelect }) {
   function addHandle() {
     onAdd(true);
+    onSelect(null);
   }
 
   return (
     <div className="friend-list-wrapper">
       {friendsList.map((friend) => (
         <Friend
+          friend={friend}
           key={friend.id}
+          id={friend.id}
           img={friend.img}
           name={friend.name}
           balance={friend.balance}
           selected={selected}
           onSelect={onSelect}
+          onAdd={onAdd}
         />
       ))}
       <div className="float-right">
@@ -29,12 +33,18 @@ function FriendList({ friendsList, onAdd, selected, onSelect }) {
   );
 }
 
-function Friend({ img, name, balance, selected, onSelect }) {
+function Friend({ friend, img, name, balance, selected, onSelect, onAdd }) {
   function selectHandle() {
-    onSelect(!selected);
+    onSelect(friend);
+    onAdd(false);
+    // console.log(friend);
   }
+  function selectCloseHandle() {
+    onSelect(null);
+  }
+
   return (
-    <div className="friend-wrapper">
+    <div className={selected === friend ? 'friend-wrapper-selected' : "friend-wrapper"}>
       <img
         src={img}
         alt="pfp"
@@ -59,8 +69,8 @@ function Friend({ img, name, balance, selected, onSelect }) {
         </p>
       </div>
       {
-        selected ?
-        <button className="close-btn" onClick={selectHandle}>Close</button> :
+        selected === friend ?
+        <button className="close-btn" onClick={selectCloseHandle}>Close</button> :
         <button className="select-btn" onClick={selectHandle}>Select</button>
       }
     </div>

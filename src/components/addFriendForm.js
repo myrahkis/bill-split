@@ -40,12 +40,12 @@ function AddFriendForm({ friendsList, onAdd, onClose, showForm }) {
           Close
         </button>
       </div>
-      <Input value={name} setter={setName} placeholder="Henry">
+      <InputStr value={name} setter={setName} placeholder="Henry">
         Friend name
-      </Input>
-      <Input value={url} setter={setURL} placeholder="https://.../name.png">
+      </InputStr>
+      <InputStr value={url} setter={setURL} placeholder="https://.../name.png">
         Image URL
-      </Input>
+      </InputStr>
       <div className="float-right">
         <button type="submit" className="add-btn">
           Add
@@ -55,7 +55,7 @@ function AddFriendForm({ friendsList, onAdd, onClose, showForm }) {
   );
 }
 
-function Input({ value, setter, placeholder, children }) {
+function InputStr({ value, setter, placeholder, children }) {
   function addHandle(e) {
     setter(e.target.value);
   }
@@ -73,4 +73,4 @@ function Input({ value, setter, placeholder, children }) {
   );
 }
 
-export { AddFriendForm, Input };
+export default AddFriendForm;

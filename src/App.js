@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 import FriendList from "./components/friendList";
-import { AddFriendForm } from "./components/addFriendForm";
+import AddFriendForm from "./components/addFriendForm";
 import BillSplit from "./components/billSplit";
 
 const friendsInit = [
@@ -28,13 +28,27 @@ const friendsInit = [
 function App() {
   const [friends, setFriends] = useState(friendsInit);
   const [showFriendForm, setShowFriendForm] = useState(false);
-  const [selected, setSelected] = useState(false);
+  const [selected, setSelected] = useState(null);
 
   return (
     <div className="container">
-        <FriendList friendsList={friends} onAdd={setShowFriendForm} selected={selected} onSelect={setSelected}/>
-      {showFriendForm === true && <AddFriendForm friendsList={friends} onAdd={setFriends} onClose={setShowFriendForm} showForm={setShowFriendForm}/>}
-      {selected === true && <BillSplit />}
+      <div className="bill-split-layout">
+        <FriendList
+          friendsList={friends}
+          onAdd={setShowFriendForm}
+          selected={selected}
+          onSelect={setSelected}
+        />
+        {selected != null && <BillSplit selectedFriend={selected}/>}
+      </div>
+      {showFriendForm === true && (
+        <AddFriendForm
+          friendsList={friends}
+          onAdd={setFriends}
+          onClose={setShowFriendForm}
+          showForm={setShowFriendForm}
+        />
+      )}
     </div>
   );
 }

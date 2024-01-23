@@ -18,6 +18,15 @@
 .friend-wrapper:hover {
   background-color: #ebeee2;
 }
+.friend-wrapper-selected {
+  background-color: #7ab9c6bc;
+  display: inherit;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items:center;
+  /* margin: 20px; */
+  padding: 0 25px;
+}
 
 .pfp {
   width: 60px;
@@ -72,4 +81,12 @@
 }
 .balance-even {
   color: rgb(84, 84, 84);
+}
+
+.close-btn {
+  background-color: #b33b32 !important;
+  color:cornsilk !important;
+}
+.close-btn:hover {
+  background-color: #912f28 !important;
 }

@@ -2,30 +2,76 @@ import React, { useState } from "react";
 import "./billSplit.css";
 import "./friendList.css";
 
-function BillSplit({ selectedFriend }) {
+function BillSplit({ selectedFriend, friendsList, setFriends, setSelected }) {
   const [bill, setBill] = useState("");
   const [yourExpense, setYourExpense] = useState("");
-  const friendExpense = bill ? bill - yourExpense : '';
+  const friendExpense = bill ? bill - yourExpense : "";
   const [payer, setPayer] = useState("");
-    
+
+  function submitHadle(e) {
+    e.preventDefault();
+
+    if (!bill || !yourExpense) return;
+    else if (payer === "1") {
+      console.log("HAHAHAHAH");
+
+      setFriends((friendsList) =>
+        friendsList.map((friend) =>
+          friend.id === selectedFriend.id
+            ? {
+                ...friend,
+                balance: friend.balance + friendExpense,
+              }
+            : friend
+        )
+      );
+    } else if (payer === "2") {
+      setFriends((friendsList) =>
+        friendsList.map((friend) =>
+          friend.id === selectedFriend.id
+            ? {
+                ...friend,
+                balance: friend.balance - yourExpense,
+              }
+            : friend
+        )
+      );
+    }
+
+    setSelected(null);
+  }
+
   return (
-    <div className="bill-split-wrapper">
-      <h3 className="header">Split the bill with {selectedFriend.name}</h3>
-      <InputNum value={bill} setter={setBill} placeholder="150">
-        Bill value
-      </InputNum>
-      <InputNum value={yourExpense} bill={bill} setter={setYourExpense} placeholder="50">
-        Your expense
-      </InputNum>
-      <div className="input-wrapper">
-        <label>{selectedFriend.name}'s expense</label>
-        <input type="text" value={friendExpense} disabled></input>
+    <form onSubmit={submitHadle}>
+      <div className="bill-split-wrapper">
+        <h3 className="header">Split the bill with {selectedFriend.name}</h3>
+        <InputNum value={bill} setter={setBill} placeholder="150">
+          Bill value
+        </InputNum>
+        <InputNum
+          value={yourExpense}
+          bill={bill}
+          setter={setYourExpense}
+          placeholder="50"
+        >
+          Your expense
+        </InputNum>
+        <div className="input-wrapper">
+          <label>{selectedFriend.name}'s expense</label>
+          <input type="text" value={friendExpense} disabled></input>
+        </div>
+        <Select
+          value={payer}
+          setter={setPayer}
+          selectedFriend={selectedFriend}
+        />
+        <div className="float-right">
+          <button type="submit" className="select-btn">
+            Split bill
+          </button>
+        </div>
       </div>
-      <Select value={payer} setter={setPayer} selectedFriend={selectedFriend} />
-      <div className="float-right">
-        <button className="select-btn">Split bill</button>
-      </div>
-    </div>
+    </form>
   );
 }
 

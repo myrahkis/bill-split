@@ -5,21 +5,22 @@ import "./friendList.css";
 function BillSplit({ selectedFriend }) {
   const [bill, setBill] = useState("");
   const [yourExpense, setYourExpense] = useState("");
-  const [friendExpense, setFriendExpense] = useState("");
+  const friendExpense = bill ? bill - yourExpense : '';
   const [payer, setPayer] = useState("");
-
+    
   return (
     <div className="bill-split-wrapper">
       <h3 className="header">Split the bill with {selectedFriend.name}</h3>
       <InputNum value={bill} setter={setBill} placeholder="150">
         Bill value
       </InputNum>
-      <InputNum value={yourExpense} setter={setYourExpense} placeholder="50">
+      <InputNum value={yourExpense} bill={bill} setter={setYourExpense} placeholder="50">
         Your expense
       </InputNum>
-      <InputNum value={friendExpense} setter={setFriendExpense} placeholder="100">
-        {selectedFriend.name}'s expense
-      </InputNum>
+      <div className="input-wrapper">
+        <label>{selectedFriend.name}'s expense</label>
+        <input type="text" value={friendExpense} disabled></input>
+      </div>
       <Select value={payer} setter={setPayer} selectedFriend={selectedFriend} />
       <div className="float-right">
         <button className="select-btn">Split bill</button>
@@ -44,9 +45,9 @@ function Select({ value, setter, selectedFriend }) {
   );
 }
 
-function InputNum({ value, setter, placeholder, children }) {
+function InputNum({ value, bill, setter, placeholder, children }) {
   function addHandle(e) {
-    setter(+e.target.value);
+    setter(+e.target.value > bill ? value : +e.target.value);
   }
 
   return (

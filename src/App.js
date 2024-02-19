@@ -39,7 +39,7 @@ function App() {
           selected={selected}
           onSelect={setSelected}
         />
-        {selected != null && <BillSplit selectedFriend={selected} friendsList={friends} setFriends={setFriends} setSelected={setSelected}/>}
+        {selected != null && <BillSplit key={selected.id} selectedFriend={selected} friendsList={friends} setFriends={setFriends} setSelected={setSelected}/>}
       </div>
       {showFriendForm === true && (
         <AddFriendForm
